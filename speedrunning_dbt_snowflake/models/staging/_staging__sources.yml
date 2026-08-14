@@ -1,0 +1,40 @@
+version: 2
+
+sources:
+  - name: raw
+    database: speedrun_db
+    schema: raw
+    tables: 
+      - name: account
+      - name: card
+      - name: client
+      - name: disp
+      - name: district
+      - name: loan
+      - name: orders
+      - name: trans
+
+models:
+  - name: stg_account
+    description: One row per account, cleaned and cast from raw account data.
+    columns:
+      - name: account_id
+        description: Primary key, unique identifier for each account.
+        tests:
+          - unique
+          - not_null
+
+      - name: district_id
+        description: Foreign key to district, location of the account's branch.
+        tests:
+          - not_null
+
+      - name: date
+        description: Date the account was created.
+        tests:
+          - not_null
+
+      - name: frequency
+        description: Frequency of statement issuance for the account.
+        tests:
+          - not_null
