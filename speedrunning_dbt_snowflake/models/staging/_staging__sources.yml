@@ -38,3 +38,29 @@ models:
         description: Frequency of statement issuance for the account.
         tests:
           - not_null
+
+  - name: stg_client
+    description: One row per client, with birth_number decoded into birth_date and sex.
+    columns:
+      - name: client_id
+        description: Primary key, unique identifier for each client.
+        tests:
+          - unique
+          - not_null
+
+      - name: district_id
+        description: Foreign key to district, client's registered address.
+        tests:
+          - not_null
+
+      - name: client_gender
+        description: Client's sex, derived from the birth_number encoding (M or F).
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['M', 'F']
+
+      - name: birth_date
+        description: Client's date of birth, decoded from the raw birth_number field.
+        tests:
+          - not_null
