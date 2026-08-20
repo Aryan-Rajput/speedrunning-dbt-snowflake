@@ -64,3 +64,30 @@ models:
         description: Client's date of birth, decoded from the raw birth_number field.
         tests:
           - not_null
+
+  - name: stg_disp
+    description: One row per disposition, linking a client to an account with a role (owner or disponent).
+    columns:
+      - name: disp_id
+        description: Primary key, unique identifier for each disposition record.
+        data_tests:
+          - unique
+          - not_null
+
+      - name: client_id
+        description: Foreign key to client.
+        data_tests:
+          - not_null
+
+      - name: account_id
+        description: Foreign key to account.
+        data_tests:
+          - not_null
+
+      - name: type
+        description: Role this client has on the account — OWNER or DISPONENT. Only owners can request loans or issue permanent orders.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['OWNER', 'DISPONENT']
