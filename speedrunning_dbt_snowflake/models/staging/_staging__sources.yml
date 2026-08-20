@@ -20,49 +20,49 @@ models:
     columns:
       - name: account_id
         description: Primary key, unique identifier for each account.
-        tests:
+        data_tests:
           - unique
           - not_null
 
       - name: district_id
         description: Foreign key to district, location of the account's branch.
-        tests:
+        data_tests:
           - not_null
 
-      - name: date
+      - name: account_created_date
         description: Date the account was created.
-        tests:
+        data_tests:
           - not_null
 
       - name: frequency
         description: Frequency of statement issuance for the account.
-        tests:
+        data_tests:
           - not_null
-
   - name: stg_client
     description: One row per client, with birth_number decoded into birth_date and sex.
     columns:
       - name: client_id
         description: Primary key, unique identifier for each client.
-        tests:
+        data_tests:
           - unique
           - not_null
 
       - name: district_id
         description: Foreign key to district, client's registered address.
-        tests:
+        data_tests:
           - not_null
 
       - name: client_gender
         description: Client's sex, derived from the birth_number encoding (M or F).
-        tests:
+        data_tests:
           - not_null
           - accepted_values:
-              values: ['M', 'F']
+              arguments:
+                values: ['M', 'F']
 
       - name: birth_date
         description: Client's date of birth, decoded from the raw birth_number field.
-        tests:
+        data_tests:
           - not_null
 
   - name: stg_disp
