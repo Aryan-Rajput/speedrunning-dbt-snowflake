@@ -15,6 +15,9 @@ sources:
       - name: trans
 
 models:
+
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
   - name: stg_account
     description: One row per account, cleaned and cast from raw account data.
     columns:
@@ -38,6 +41,9 @@ models:
         description: Frequency of statement issuance for the account.
         data_tests:
           - not_null
+
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
   - name: stg_client
     description: One row per client, with birth_number decoded into birth_date and sex.
     columns:
@@ -65,6 +71,9 @@ models:
         data_tests:
           - not_null
 
+
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
   - name: stg_disp
     description: One row per disposition, linking a client to an account with a role (owner or disponent).
     columns:
@@ -91,3 +100,119 @@ models:
           - accepted_values:
               arguments:
                 values: ['OWNER', 'DISPONENT']
+
+
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  - name: stg_district
+    description: One row per district, with the district name and region.
+    columns:
+      # column1 eg value -- 1
+      - name: district_id
+        description: Primary key, unique identifier for each district.
+        data_tests:
+          - unique
+          - not_null
+      # column2 eg value -- "Hl.m. Praha"
+      - name: district_name
+        description: Name of the district.
+        data_tests:
+          - not_null
+      # column3 eg value -- "Prague"
+      - name: region
+        description: Region the district belongs to.
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: 
+                  - east Bohemia
+                  - north Moravia
+                  - south Bohemia
+                  - north Bohemia
+                  - west Bohemia
+                  - south Moravia
+                  - Prague
+                  - central Bohemia
+      # column4 eg value -- 1204953
+      - name: no_of_inhabitants
+        description: Number of inhabitants in the district.
+        data_tests:
+          - not_null
+      # column5 eg value -- 0
+      - name: no_of_municipalities_lt499
+        description: Number of municipalities with less than 499 inhabitants.
+        data_tests:
+          - not_null
+      # column6 eg value -- 0
+      - name: no_of_municipalities_500_1999
+        description: Number of municipalities with 500 to 1999 inhabitants.
+        data_tests:
+          - not_null
+      # column7 eg value -- 0
+      - name: no_of_municipalities_2000_9999
+        description: Number of municipalities with 2000 to 9999 inhabitants.
+        data_tests:
+          - not_null
+      # column8 eg value -- 1
+      - name: no_of_municipalities_gt10000
+        description: Number of municipalities with more than 10,000 inhabitants.
+        data_tests:
+          - not_null
+      # column9 eg value -- 1
+      - name: no_of_cities
+        description: Number of cities in the district.
+        data_tests:
+          - not_null
+      # column10 eg value -- 100.0
+      - name: ratio_urban_inhabitants
+        description: Ratio of urban inhabitants in the district.
+        data_tests:
+          - not_null
+      # column11 eg value -- 12541
+      - name: average_salary
+        description: Average salary in the district.
+        data_tests:
+          - not_null
+      # column12 eg value -- 0.29
+      - name: unemployment_rate_95
+        description: Unemployment rate in 1995.
+        data_tests:
+          - not_null
+      # column13 eg value -- 0.43
+      - name: unemployment_rate_96
+        description: Unemployment rate in 1996.
+        data_tests:
+          - not_null
+      # column14 eg value -- 167
+      - name: entrepreneurs_per_1000_inhabitants
+        description: Number of entrepreneurs per 1000 inhabitants.
+        data_tests:
+          - not_null
+      # column15 eg value -- 85677
+      - name: no_of_crimes_95
+        description: Number of crimes in 1995.
+        data_tests:
+          - not_null
+      # column16 eg value -- 99107
+      - name: no_of_crimes_96
+        description: Number of crimes in 1996.
+        data_tests:
+          - not_null
+
+
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  - name: stg_card
+  
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  - name: stg_loan
+  
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  - name: stg_order
+  
+#=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
+  - name: stg_trans

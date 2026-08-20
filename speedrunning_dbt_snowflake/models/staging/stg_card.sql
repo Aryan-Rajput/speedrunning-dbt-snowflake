@@ -1,0 +1,12 @@
+with source as (
+    select * from {{ source('raw', 'card') }}
+),
+renamed as (
+    select
+        card_id,
+        disp_id,
+        lower(type) as card_type,
+        cast(to_date(issued::varchar, 'YYMMDD') as date) as card_issued_date
+    from source
+)
+select * from renamed
