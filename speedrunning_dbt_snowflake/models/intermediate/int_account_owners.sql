@@ -1,5 +1,6 @@
 -- models/intermediate/int_account_owners.sql
--- the 3 way join is dependent on disp as there are the type tha can be used to filter the other 2 tables. The other 2 tables are not dependent on each other and can be joined in any order.
+-- the 3 way join is dependent on disp as there are the type tha can be used to filter the other 2 tables. 
+--The other 2 tables are not dependent on each other and can be joined in any order.
 with disp as (
     select * from {{ ref('stg_disp') }}
     where type = 'OWNER'
