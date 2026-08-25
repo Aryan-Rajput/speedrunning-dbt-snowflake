@@ -9,6 +9,7 @@ renamed as (
         case type
             when 'PRIJEM' then 'credit'
             when 'VYDAJ' then 'withdrawal'
+            when 'VYBER' then 'withdrawal'
             else 'unspecified_' || type
         end as trans_type,
         case operation
