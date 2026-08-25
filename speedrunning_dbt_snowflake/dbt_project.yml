@@ -33,3 +33,7 @@ models:
   speedrunning_dbt_snowflake:
     staging:
       +schema: staging
+    intermediate:
+      +schema: intermediate
+    marts:
+      +schema: marts
