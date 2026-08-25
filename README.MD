@@ -90,5 +90,5 @@ dbt docs serve              # graph looks good
 ```
 
 ## graph
-![graph](assets/graph.png)
+![graph](assets_img/graph.png)
 
