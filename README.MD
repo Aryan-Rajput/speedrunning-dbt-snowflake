@@ -88,3 +88,7 @@ dbt test                 # do this also
 dbt docs generate         # graph good
 dbt docs serve              # graph looks good
 ```
+
+## graph
+![graph](assets/graph.png)
+
