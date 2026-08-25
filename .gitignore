@@ -3,5 +3,5 @@ target/
 dbt_packages/
 logs/
 .env
-assets/
+assets
 /docs/
