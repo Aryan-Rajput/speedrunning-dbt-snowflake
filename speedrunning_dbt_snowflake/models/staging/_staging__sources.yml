@@ -176,9 +176,7 @@ models:
           - not_null
       # column12 eg value -- 0.29
       - name: unemployment_rate_95
-        description: Unemployment rate in 1995.
-        data_tests:
-          - not_null
+        description: Unemployment rate in 1995. Removed Not NULL test because there exists values as '?' in the raw data.
       # column13 eg value -- 0.43
       - name: unemployment_rate_96
         description: Unemployment rate in 1996.
@@ -191,9 +189,7 @@ models:
           - not_null
       # column15 eg value -- 85677
       - name: no_of_crimes_95
-        description: Number of crimes in 1995.
-        data_tests:
-          - not_null
+        description: Number of crimes in 1995. Removed Not NULL test because there exists values as '?' in the raw data.
       # column16 eg value -- 99107
       - name: no_of_crimes_96
         description: Number of crimes in 1996.

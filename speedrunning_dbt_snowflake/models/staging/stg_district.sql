@@ -14,10 +14,10 @@ renamed as (
         A9 as no_of_cities,
         A10 as ratio_urban_inhabitants,
         A11 as average_salary,
-        A12 as unemployment_rate_95,
+        try_cast(A12 as float) as unemployment_rate_95,
         A13 as unemployment_rate_96,
         A14 as entrepreneurs_per_1000_inhabitants,
-        A15 as no_of_crimes_95,
+        try_cast(A15 as number) as no_of_crimes_95,
         A16 as no_of_crimes_96
     from source
 )
