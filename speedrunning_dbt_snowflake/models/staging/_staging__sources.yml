@@ -199,16 +199,110 @@ models:
 
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
+
   - name: stg_card
-  
+    description: One row per card, linked to a disposition.
+    columns:
+      - name: card_id
+        data_tests:
+          - unique
+          - not_null
+      - name: disp_id
+        data_tests:
+          - not_null
+      - name: card_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['junior', 'classic', 'gold']   # verify exact values yourself first
+      - name: card_issued_date
+        data_tests:
+          - not_null
+
+
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 
   - name: stg_loan
-  
+    description: One row per loan, with amount, duration, and raw status code.
+    columns:
+      - name: loan_id
+        data_tests:
+          - unique
+          - not_null
+      - name: account_id
+        data_tests:
+          - not_null
+      - name: loan_date
+        data_tests:
+          - not_null
+      - name: loan_amount
+        data_tests:
+          - not_null
+      - name: loan_duration_months
+        data_tests:
+          - not_null
+      - name: monthly_payment
+        data_tests:
+          - not_null
+      - name: loan_status_code
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['A', 'B', 'C', 'D']
+
+
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-  - name: stg_order
-  
+
+  - name: stg_orders
+    description: One row per standing order, with purpose decoded from k_symbol.
+    columns:
+      - name: order_id
+        data_tests:
+          - unique
+          - not_null
+      - name: account_id
+        data_tests:
+          - not_null
+      - name: order_amount
+        data_tests:
+          - not_null
+      - name: order_purpose
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['insurance_payment', 'household_payment', 'leasing_payment', 'loan_payment', 'unspecified']
+
+
 #=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-++++++++=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+
 
   - name: stg_trans
+    description: One row per transaction, with type, operation, and purpose decoded from raw Czech codes.
+    columns:
+      - name: trans_id
+        data_tests:
+          - unique
+          - not_null
+      - name: account_id
+        data_tests:
+          - not_null
+      - name: trans_date
+        data_tests:
+          - not_null
+      - name: trans_type
+        data_tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values: ['credit', 'withdrawal']
+      - name: trans_amount
+        data_tests:
+          - not_null
+      - name: balance_after_trans
+        data_tests:
+          - not_null

@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: int_account_owners
+    description: One row per account, joined to its owning client and their demographic details.
+    columns:
+      - name: disp_id
+        data_tests:
+          - unique
+          - not_null
+      - name: account_id
+        data_tests:
+          - not_null
+      - name: client_id
+        data_tests:
+          - not_null
