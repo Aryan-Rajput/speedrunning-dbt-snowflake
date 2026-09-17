@@ -1,6 +1,6 @@
 # speedrunning-dbt-snowflake
 
-revisiing dbt and snowflake using Berka dataset
+revising dbt and snowflake using Berka dataset
 (czech bank dataset from the 90s, used in the PKDD'99 challenge). Raw csvs dumped into snowflake and then
 dbt for all transformations. keeping it small.
 
